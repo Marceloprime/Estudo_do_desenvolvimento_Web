@@ -1,0 +1,7 @@
+body{
+    background-color: rgb(228, 144, 144);
+    background-image: url("../images/download.jpeg");
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+}
