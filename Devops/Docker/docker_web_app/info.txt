@@ -1,0 +1,3 @@
+docker build . -t marcelo/node-web-app
+sudo docker run -p 127.0.0.1:49160:8080 -d marcelo/node-web-app
+docker exec -it 5c0a6e742409 /bin/bash
