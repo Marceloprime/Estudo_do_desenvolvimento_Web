@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML</title>
+</head>
+<body>
+    <style>
+        #conteudo{
+            padding: 30px;
+        }
+    </style>
+    <header>
+        <h1>
+            Exercícios HTML
+        </h1>
+    </header>
+    <nav>
+        <a href="exercicios/teste.html">00 - Teste</a>
+        <a href="exercicios/texto.html">01 - Textos</a>
+        <a href="exercicios/texto2.html">02 - Textos</a>
+        <a href="exercicios/listas.html">03 - Listas</a>
+
+    </nav>
+
+    <section id="conteudo">
+    </section>
+    <footer>
+        Curso de Web Moderno
+    </footer>
+    <script>
+        document.querySelectorAll('a').forEach( link => {
+            const conteudo = document.getElementById('conteudo')
+            link.onclick = function (e){
+                e.preventDefault()// ele preve o comportamento da página e exercuta um novo comando
+                fetch(link.href)
+                    .then(resp => resp.text())
+                    .then(html => conteudo.innerHTML = html)
+            }
+        })
+    </script>
+</body>
+</html>
