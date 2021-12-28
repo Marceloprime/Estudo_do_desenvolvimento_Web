@@ -1,0 +1,30 @@
+npm -  salva os pacotes no repositório local
+npx -  executar os pacotes sem salva no repositório local
+
+----------------------------------------------------------------
+Node Version Manager - nvm
+    Permitir controlar as versõs do node
+
+----------------------------------------------------------------
+Strict Mode
+
+StrictMode is a tool for highlighting potential problems in an application. 
+Like Fragment, StrictMode does not render any visible UI. 
+It activates additional checks and warnings for its descendants.
+
+      <React.StrictMode>
+        <div>
+          <ComponentOne />
+          <ComponentTwo />
+        </div>
+      </React.StrictMode>
+
+StrictMode currently helps with:
+
+Identifying components with unsafe lifecycles
+Warning about legacy string ref API usage
+Warning about deprecated findDOMNode usage
+Detecting unexpected side effects
+Detecting legacy context API
+
+----------------------------------------------------------------
