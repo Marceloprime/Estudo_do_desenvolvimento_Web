@@ -4,23 +4,33 @@ import './FormularioCadastro.css';
 class FormularioCadastro extends React.Component{
     state = {
         title: "",
-        note: ""
+        note: "",
+        category: "Trabalho"
     }
 
     handleOnSubmit = () => {
         this.props.addNote({
             "title" : this.state.title,
-            "note" : this.state.note
+            "note" : this.state.note,
+            "category" : this.state.category,
         })
         this.setState({
             title: "",
-            note: ""
+            note: "",
         })
     }
 
     render(){
         return(
             <div className="form-cadastro" >
+                <select 
+                    className="form-cadastro_select"
+                    onChange={event => {
+                        this.setState({category : event.target.value})
+                    }}    
+                >
+                    {this.props.categories.map((item , index) => <option value={item} key={index}>{item}</option>)}
+                </select>
                 <input 
                     type="text" 
                     placeholder="Título"

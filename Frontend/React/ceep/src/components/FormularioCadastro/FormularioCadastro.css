@@ -16,6 +16,11 @@
     font-weight: 100;
   }
   
+  .form-cadastro_select{
+    margin-bottom: 1rem;
+    width: 60%;
+  }
+
   .form-cadastro_submit {
     align-self: flex-end;
     width: 30%;

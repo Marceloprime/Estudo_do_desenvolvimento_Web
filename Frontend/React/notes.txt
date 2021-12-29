@@ -28,3 +28,5 @@ Detecting unexpected side effects
 Detecting legacy context API
 
 ----------------------------------------------------------------
+components sem states são de mais facil manutenção
+----------------------------------------------------------------
