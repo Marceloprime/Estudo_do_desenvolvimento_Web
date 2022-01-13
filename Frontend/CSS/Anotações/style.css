@@ -1,0 +1,44 @@
+.container{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+    margin-bottom: 2rem;
+}
+
+.box{
+    width: 100px;
+    height: 70px;
+    border: 3px solid green;
+    background-color: greenyellow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box2{
+    width: 100px;
+    height: 70px;
+    border: 3px solid red;
+    background-color: rgb(216, 122, 122);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*Pseudo classes do css */
+
+/*Quando o mouse esta sobre um elemento*/
+.box:hover{
+    background-color: rgb(167, 180, 146);
+}
+
+/*Quando clicamos com o mouse*/
+.box:active{
+    background-color: yellow;
+}
+
+/*Quando o mouse esta sobre um elemento e queremos afertar outro elemento*/
+.box:hover p{
+    color: rgb(89, 161, 255);
+}
