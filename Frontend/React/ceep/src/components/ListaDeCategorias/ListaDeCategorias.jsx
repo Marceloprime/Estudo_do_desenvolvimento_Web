@@ -1,37 +1,51 @@
-import React from "react";
-import './ListaDeCategorias.css';
+import React, { Component } from "react";
+import "./estilo.css";
+class ListaDeCategorias extends Component {
 
-class ListaDeCategorias extends React.Component{
-    state = {
-        category: ""
-    }
+  constructor(){
+    super();
+    this.state = {categorias:[]}
+    this._novasCategorias = this._novasCategorias.bind(this);
+  }
+  componentDidMount(){
+    this.props.categorias.inscrever(this._novasCategorias);
+  }
 
-    _handleEventInput(event){
-        if(event.key === 'Enter'){
-            this.props.addCategory(this.state.category)
-            this.setState({category : ""})
-        }
-    }
+  componentWillUnmount(){
+    this.props.categorias.desinscrever(this._novasCategorias);
+  }
+  
+  _novasCategorias(categorias){
+   this.setState({...this.state,categorias})
+  }
 
-    render(){
-        return(
-            <section className="lista-categorias">
-                <ul className="lista-categorias_lista">
-                    {this.props.categories.map((item, index) => <li className="lista-categorias_item" key={index}>{item}</li>)}
-                </ul>
-                <input 
-                    type={'text'}
-                    placeholder="Adicionar Categória"
-                    className="lista-categorias_input"
-                    onKeyUp={this._handleEventInput.bind(this)}
-                    onChange={(text) => {
-                        this.setState({category : text.target.value})
-                    }}
-                    value={this.state.category}
-                />
-            </section>
-        )
+  _handleEventoInput(e) {
+    if (e.key == "Enter") {
+      let valorCategoria = e.target.value;
+      this.props.adicionarCategoria(valorCategoria);
     }
+  }
+  render() {
+    return (
+      <section className="lista-categorias">
+        <ul className="lista-categorias_lista">
+          {this.state.categorias.map((categoria, index) => {
+            return (
+              <li key={index} className="lista-categorias_item">
+                {categoria}
+              </li>
+            );
+          })}
+        </ul>
+        <input
+          type="text"
+          className="lista-categorias_input"
+          placeholder="Adicionar Categoria"
+          onKeyUp={this._handleEventoInput.bind(this)}
+        />
+      </section>
+    );
+  }
 }
 
 export default ListaDeCategorias;

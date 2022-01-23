@@ -1,80 +1,40 @@
-import React from "react";
-
-
-import ListaDeNotas from "./components/ListadeNotas/ListadeNotas";
-import FormularioCadastro from "./components/FormularioCadastro/FormularioCadastro";
+import React, { Component } from "react";
+import ListaDeNotas from "./components/ListaDeNotas";
+import FormularioCadastro from "./components/FormularioCadastro";
 import ListaDeCategorias from "./components/ListaDeCategorias";
-
-import Category from './data/Category'
-import Notes from './data/Notes'
-
 import "./assets/App.css";
-import './assets/index.css';
-
-class App extends React.Component {
-
-  constructor(){
+import "./assets/index.css";
+import Categorias from "./dados/Categorias";
+import ArrayDeNotas from "./dados/Notas";
+class App extends Component {
+  constructor() {
     super();
-    this.categorias = new Category()
-    this.notes = new Notes()
+    this.categorias = new Categorias();
+    this.notas = new ArrayDeNotas();
+    
   }
 
-  /*
-  state = {
-    data : [
-      {
-        title : "Teste",
-        note : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-        category : "Trabalho"
-      },
-      {
-        title : "Trabalho",
-        note : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-        category : "Trabalho"
-      }
-    ],
-    categorias : ["Trabalho", "Estudo"]
-  }
-
-  addNote = (note) => {
-    let notes = this.state.data
-    notes.push(note)
-    console.log(notes)
-    this.setState({data : notes})
-  }
-
-  deleteNote = (index) =>{
-    let arrayNotas = this.state.data;
-    arrayNotas.splice(index,1)
-    this.setState({data : arrayNotas})
-    console.log(this)
-  }
-
-
-  addCategory = (category) => {
-    let categories = this.state.categorias
-    categories.push(category)
-    this.setState({categorias: categories})
-  } 
-  */
-
-  render(){
+  render() {
     return (
-      <div className="conteudo">
-        <FormularioCadastro 
-          addNote={this.notes.addNote}
-          categories={this.categorias.categorias}
+      <section className="conteudo">
+        <FormularioCadastro
+          categorias={this.categorias}
+          criarNota={this.notas.adicionarNota.bind(this.notas)}
         />
         <main className="conteudo-principal">
-          <ListaDeCategorias categories={this.categorias.categorias} addCategory={this.categorias.addCategory}/>
-          <ListaDeNotas 
-            data={this.notes.notes} 
-            deleteNote={this.notes.deleteNote}
+          <ListaDeCategorias
+            adicionarCategoria={this.categorias.adicionarCategoria.bind(this.categorias)}
+            categorias={this.categorias}
+          />
+          <ListaDeNotas
+            apagarNota={this.notas.apagarNota.bind(this.notas)}
+            notas={this.notas}
           />
         </main>
-      </div>
+      </section>
     );
   }
 }
 
+//new ListaDeNotas({notas:this.notas})
 export default App;

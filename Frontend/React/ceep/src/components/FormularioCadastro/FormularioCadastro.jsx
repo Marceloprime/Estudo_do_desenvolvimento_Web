@@ -1,56 +1,78 @@
-import React from "react";
+import React, { Component } from "react";
+import "./estilo.css";
+class FormularioCadastro extends Component {
+  constructor(props) {
+    super(props);
+    this.titulo = "";
+    this.texto = "";
+    this.categoria = "Sem Categoria";
+    this.state = {categorias:[]}
 
-import './FormularioCadastro.css';
-class FormularioCadastro extends React.Component{
-    state = {
-        title: "",
-        note: "",
-        category: "Trabalho"
-    }
+    this._novasCategorias = this._novasCategorias.bind(this);
+  }
 
-    handleOnSubmit = () => {
-        this.props.addNote({
-            "title" : this.state.title,
-            "note" : this.state.note,
-            "category" : this.state.category,
-        })
-        this.setState({
-            title: "",
-            note: "",
-        })
-    }
+  componentDidMount(){
+    this.props.categorias.inscrever( this._novasCategorias);
+    
+  }
 
-    render(){
-        return(
-            <div className="form-cadastro" >
-                <select 
-                    className="form-cadastro_select"
-                    onChange={event => {
-                        this.setState({category : event.target.value})
-                    }}    
-                >
-                    {this.props.categories.map((item , index) => <option value={item} key={index}>{item}</option>)}
-                </select>
-                <input 
-                    type="text" 
-                    placeholder="Título"
-                    onChange={text => {
-                        this.setState({title : text.target.value})
-                    }}
-                    value={this.state.title}
-                />
-                <textarea 
-                    placeholder="Escreva sua nota"
-                    onChange={text => {
-                        this.setState({note : text.target.value})
-                    }}
-                    value={this.state.note}
-                    className="form-cadastro_input"
-                />
-                <button className="form-cadastro_input form-cadastro_submit" onClick={this.handleOnSubmit} type="submit">Criar Nota</button>
-            </div>
-        )
-    }
+  componentWillUnmount(){
+    this.props.categorias.desinscrever( this._novasCategorias);
+  }
+  _novasCategorias(categorias){
+    this.setState({...this.state, categorias})
+  }
+  _handleMudancaCategoria(evento){
+    evento.stopPropagation();
+    this.categoria = evento.target.value;
+  }
+  _handleMudancaTitulo(evento) {
+    evento.stopPropagation();
+    this.titulo = evento.target.value;
+  }
+
+  _handleMudancaTexto(evento) {
+    evento.stopPropagation();
+    this.texto = evento.target.value;
+  }
+
+  _criarNota(evento) {
+    evento.preventDefault();
+    evento.stopPropagation();
+    this.props.criarNota(this.titulo, this.texto, this.categoria);
+  }
+
+  render() {
+    return (
+      <form className="form-cadastro" onSubmit={this._criarNota.bind(this)}>
+        <select
+          onChange={this._handleMudancaCategoria.bind(this)}
+          className="form-cadastro_input"
+        >
+          <option>Sem Categoria</option>
+
+          {this.state.categorias.map((categoria, index) => {
+            return <option key={index} >{categoria}</option>;
+          })}
+        </select>
+        <input
+          type="text"
+          placeholder="Título"
+          className="form-cadastro_input"
+          onChange={this._handleMudancaTitulo.bind(this)}
+        />
+        <textarea
+          rows={15}
+          placeholder="Escreva sua nota..."
+          className="form-cadastro_input"
+          onChange={this._handleMudancaTexto.bind(this)}
+        />
+        <button className="form-cadastro_input form-cadastro_submit">
+          Criar Nota
+        </button>
+      </form>
+    );
+  }
 }
 
 export default FormularioCadastro;
