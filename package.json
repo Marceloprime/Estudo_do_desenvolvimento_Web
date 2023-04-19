@@ -1,0 +1,20 @@
+{
+  "name": "estudo_do_desenvolvimento_web",
+  "version": "1.0.0",
+  "description": "<h1>Estudo sobre desenvolvimento Web</h1> <p>Esse estudo consiste em desenvolver varios projetos utilizando as tecnologias mais usadas  no mundo, referente a Web. A base do estudo é baseado nos roadmaps desenvolvidas por <a href=\"https://github.com/kamranahmedse/developer-roadmap\">Kamran Ahmed</a></p>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Marceloprime/Estudo_do_desenvolvimento_Web.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Marceloprime/Estudo_do_desenvolvimento_Web/issues"
+  },
+  "homepage": "https://github.com/Marceloprime/Estudo_do_desenvolvimento_Web#readme"
+}
